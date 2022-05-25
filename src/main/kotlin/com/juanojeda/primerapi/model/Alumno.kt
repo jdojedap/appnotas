@@ -14,7 +14,10 @@ class Alumno {
         var name : String? = null
         var materias: String? = null
         var asistencias: Long? = null
-        var profesor_id:Long?=null
+        @Column(name="profesor_id")
+        var profesorId:Long?=null
+        @Column(name="representante_id")
+        var representante_id:Long?=null
 
 
 

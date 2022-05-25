@@ -2,6 +2,7 @@ package com.juanojeda.primerapi.service
 
 import com.juanojeda.primerapi.model.Alumno
 import com.juanojeda.primerapi.repository.AlumnoRepository
+import com.juanojeda.primerapi.repository.ProfesorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -16,7 +17,9 @@ import org.springframework.web.server.ResponseStatusException
 class AlumnoService {
     @Autowired
     lateinit var alumnoRepository: AlumnoRepository
-    lateinit var profesorRepository: AlumnoRepository
+    @Autowired
+    lateinit var profesorRepository: ProfesorRepository
+
 
 
     fun list(): List<Alumno> {
@@ -25,7 +28,7 @@ class AlumnoService {
 
     fun save(alumno: Alumno):Alumno{
         try {
-            profesorRepository.findById(alumno.profesor_id) ?: throw Exception("Id de profesor no existe")
+            profesorRepository.findById(alumno.profesorId) ?: throw Exception("Id de profesor no existe")
             return alumnoRepository.save(alumno)
         }catch (ex : Exception){
             throw ResponseStatusException(
