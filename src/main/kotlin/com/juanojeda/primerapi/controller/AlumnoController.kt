@@ -1,5 +1,6 @@
 package com.juanojeda.primerapi.controller
 
+import com.juanojeda.primerapi.dto.NuevoAlumno
 import com.juanojeda.primerapi.model.Alumno
 import com.juanojeda.primerapi.service.AlumnoService
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,9 +18,19 @@ class AlumnoController {
             fun List(): List<Alumno> {
                 return  alumnoService.list()
     }
+    @GetMapping("/asistencias/{asistencias}")
+    fun listByAsistencias (@PathVariable("asistencias") asistencias: Long): List<Alumno>? {
+        return alumnoService.getByAsistencias(asistencias)
+    }
+
     @PostMapping
     fun save (@RequestBody alumno: Alumno): Alumno {
         return  alumnoService.save(alumno)
+    }
+
+    @PostMapping("/change/name")
+    fun updateOtherName (@RequestBody nuevoAlumno: NuevoAlumno): String?{
+        return alumnoService.updateOtherName(nuevoAlumno)
     }
     @PutMapping
     fun update (@RequestBody alumno: Alumno): Alumno {

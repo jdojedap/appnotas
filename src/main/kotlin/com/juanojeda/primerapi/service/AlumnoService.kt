@@ -1,11 +1,13 @@
 package com.juanojeda.primerapi.service
 
+import com.juanojeda.primerapi.dto.NuevoAlumno
 import com.juanojeda.primerapi.model.Alumno
 import com.juanojeda.primerapi.repository.AlumnoRepository
 import com.juanojeda.primerapi.repository.ProfesorRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.server.ResponseStatusException
@@ -68,6 +70,18 @@ class AlumnoService {
     fun getById (id: Long?):Alumno?{
         return alumnoRepository.findById(id)
     }
+
+    fun getByAsistencias (asistencias: Long?): List<Alumno>?{
+        return alumnoRepository.getListActiveAsistencias(asistencias)
+    }
+
+    @Transactional
+    fun updateOtherName (NuevoAlumno:NuevoAlumno): String?{
+        val rowsUpdate=alumnoRepository.setOtherName(NuevoAlumno.nombre, NuevoAlumno.nuevoAlumno)
+        return "${rowsUpdate} rows updated"
+    }
+
+
 
 
 }

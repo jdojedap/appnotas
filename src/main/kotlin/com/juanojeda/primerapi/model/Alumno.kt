@@ -17,7 +17,7 @@ class Alumno {
         @Column(name="profesor_id")
         var profesorId:Long?=null
         @Column(name="representante_id")
-        var representante_id:Long?=null
+        var representanteId:Long?=null
 
 
 
