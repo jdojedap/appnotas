@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.server.ResponseStatusException
 
 
@@ -81,7 +79,29 @@ class AlumnoService {
         return "${rowsUpdate} rows updated"
     }
 
+    fun validateSerialNumber (nui:String?): Boolean? {
+
+        serial.takeIf { !it?.trim().isNullOrEmpty() }
+            ?: throw Exception()
+
+        if (serial?.substring(0, 3).equals("786"))
+            return true
+
+        return false
 
 
+        try {
+            serial.takeIf { !it?.trim().isNullOrEmpty() }
+                ?: throw Exception()
+            if (serial?.substring(6, 9).equals("100"))
+                return true
+            return false
+        }
+        catch (e: Exception) {
+            throw Exception()
+        }
+
+
+    }
 
 }

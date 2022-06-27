@@ -11,6 +11,7 @@ class Alumno {
         @Id
         @Column(updatable = false)
         var id : Long? = null
+        var nui :Long? = null
         var name : String? = null
         var materias: String? = null
         var asistencias: Long? = null
