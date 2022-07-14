@@ -81,10 +81,10 @@ class AlumnoService {
 
     fun validateSerialNumber (nui:String?): Boolean? {
 
-        serial.takeIf { !it?.trim().isNullOrEmpty() }
+        nui.takeIf { !it?.trim().isNullOrEmpty() }
             ?: throw Exception()
 
-        if (serial?.substring(0, 3).equals("786"))
+        if (nui?.substring(0, 3).equals("786"))
             return true
 
         return false
